@@ -14,7 +14,6 @@ with open(argv[2],"r") as outfile:
 
 print("Preparing text to be sent...")
 print(f"Original size: {sys.getsizeof(data)}")
-
 data_compressed=zlib.compress(data)
 print(f"New size compressed: {sys.getsizeof(data_compressed)}")
 
@@ -33,6 +32,8 @@ header = f"ft-{ftype};fn-{fname};tb-{len(slicedData)};fp-rcvd/;"
 
 sendSomething("header")
 
+print("Header: "+header)
+
 slicedHeader = []
 while(len(header) > 0):
     slicedHeader.append(header[:16])
@@ -47,3 +48,4 @@ for d in slicedData:
     sendSomething(d)
 
 sendSomething("end transaction")
+print("File sent !")
