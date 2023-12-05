@@ -4,7 +4,7 @@ import zlib
 
 def sendSomething(data):
     pingr=IP(dst=ip)/ICMP()/Padding(data)
-    send(pingr, verbose=False)
+    send(pingr)
 
 data = bytes()
 ip = argv[1]
